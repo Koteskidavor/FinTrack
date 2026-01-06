@@ -4,7 +4,7 @@ FinTrack is a secure, locally managed personal budgeting application that allows
 
 ## 🌐 Deployment
 
-Check out the live application here: **[Link to Deployment](https://fintrackcash.netlify.app/)**
+Check out the live application here: **[https://fintrackcash.netlify.app/](https://fintrackcash.netlify.app/)**
 
 ## 🚀 Features
 
