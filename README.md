@@ -1,65 +1,91 @@
-# Secure Personal Finance App
+# FinTrack - Secure Personal Finance App
 
-A local-first, privacy-focused personal finance application built with React, TypeScript, and Vite.
-This application runs entirely in the browser, storing data in IndexedDB with client-side AES-GCM encryption.
+FinTrack is a secure, locally managed personal budgeting application that allows users to manage their income, track transactions, and monitor budgets in one place. The app provides a clear overview of finances using visual charts and **real-time AI insights powered by Hugging Face**, helping users make smarter money management decisions.
+
+## 🌐 Deployment
+
+Check out the live application here: **[Link to Deployment](https://fintrackcash.netlify.app/)**
 
 ## 🚀 Features
 
-- **Local-First & Secure**: All data stored locally, encrypted with Web Crypto API.
-- **Transactions**: Track income and expenses with categorization.
-- **Budgeting**: Set monthly spending limits and track progress.
-- **Analytics**: Visualization of spending trends and category breakdown.
-- **AI Insights**: Privacy-preserving educational feedback on spending habits (Mocked for Demo).
+-   **Local-First & Secure**: All data is stored locally in your browser (IndexedDB) and encrypted using the Web Crypto API.
+-   **Robust Tracking**:
+    -   **Transactions**: Log income and expenses with detailed categorization.
+    -   **Budgeting**: Set and monitor monthly spending limits for different categories.
+-   **Visual Analytics**: Interactive charts to visualize spending trends and category breakdowns.
+-   **AI Insights**: Privacy-preserving educational feedback on spending habits fetched from a **real AI model via Hugging Face**.
+-   **Modern UI**: Fully responsive design with **Dark Mode** support and accessible components.
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 18, TypeScript, Vite
-- **Styling**: Tailwind CSS (v3/v4 compat) + PostCSS
-- **State Management**: Redux Toolkit
-- **Storage**: IndexedDB (via `idb`)
-- **Encryption**: Web Crypto API (AES-GCM)
-- **Data Viz**: Recharts
-- **Testing**: Vitest, React Testing Library
+### Core
+-   **Framework**: [React 19](https://react.dev/)
+-   **Build Tool**: [Vite](https://vitejs.dev/)
+-   **Language**: [TypeScript](https://www.typescriptlang.org/)
+-   **Routing**: [React Router v7](https://reactrouter.com/)
+
+### State & Storage
+-   **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/)
+-   **Local Storage**: [idb](https://github.com/jakearchibald/idb) (IndexedDB wrapper)
+-   **Encryption**: Web Crypto API (AES-GCM)
+
+### Styling & UI
+-   **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+-   **Icons**: [Lucide React](https://lucide.dev/)
+-   **Components**: Custom accessible UI components (DateInput, etc.)
+-   **Date Handling**: [date-fns](https://date-fns.org/) + [react-day-picker](https://daypicker.dev/)
+-   **Charts**: [Chart.js](https://www.chartjs.org/) + [react-chartjs-2](https://react-chartjs-2.js.org/)
+
+### Testing
+-   **Unit/Integration**: [Vitest](https://vitest.dev/)
+-   **Component Testing**: [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
 ## 🏗️ Architecture
 
-- **`src/features/`**: Domain-specific logic (Transactions, Budget, Analytics).
-- **`src/lib/`**: Core utilities (Crypto, Storage, AI Service).
-- **`src/store/`**: Redux store configuration.
-- **`src/components/ui/`**: Reusable atomic components.
+The project follows a feature-based architecture locally:
+
+-   **`src/features/`**: Domain-specific logic (Transactions, Budget, Analytics).
+-   **`src/lib/`**: Core utilities (Crypto, Storage adapters, AI Service abstractions).
+-   **`src/store/`**: Global Redux store configuration and slices.
+-   **`src/components/ui/`**: Reusable, atomic UI components (Buttons, Inputs, Modals).
 
 ### Security Model
-- Generates a random AES-GCM key on first load (stored in localStorage for MVP; in production, would derive from user password).
-- Encrypts transaction amounts and descriptions before saving to IndexedDB.
-- Decrypts on-the-fly when loading into memory.
-
-### Performance
-- **Virtualization Ready**: Architecture supports `react-window` for large lists (currently optimized list with `memo`).
-- **Efficient State**: Redux Toolkit for predictable updates.
-- **Lazy Loading**: (Planned) Chart components can be lazy loaded.
+1.  **Key Generation**: Generates a random AES-GCM key on first load.
+    -   *Note: Currently stored in `localStorage` for MVP convenience. Clearing browser data will lose the key and data.*
+2.  **Encryption**: Encrypts sensitive transaction data (amounts, descriptions) before persisting to IndexedDB.
+3.  **Decryption**: Decrypts data on-the-fly when loading into application memory.
 
 ## 📦 Setup & Run
 
-1. **Install Dependencies**
-   ```bash
-   npm install
-   ```
+1.  **Install Dependencies**
+    ```bash
+    npm install
+    ```
 
-2. **Start Dev Server**
-   ```bash
-   npm run dev
-   ```
+2.  **Start Dev Server**
+    ```bash
+    npm run dev
+    ```
 
-3. **Run Tests**
-   ```bash
-   npm test
-   ```
+3.  **Run Tests**
+    ```bash
+    npm test
+    ```
+
+4.  **Build for Production**
+    ```bash
+    npm run build
+    ```
 
 ## ⚠️ Limitations (MVP)
-- **Key Storage**: Encryption key is currently stored in `localStorage` for convenience. Clearing browser data will lose the key and thus the data.
-- **AI Service**: currently returns mock responses to demonstrate the privacy-guard integration without requiring an API key.
+
+-   **Data Persistence**: If you clear your browser's Local Storage or IndexedDB, **all data will be permanently lost** as the encryption key is destroyed.
+-   **Device Sync**: Currently single-device only (no cloud sync).
 
 ## 🤝 Contributing
-1. Fork the repo
-2. Create feature branch
-3. Submit PR
+
+1.  Fork the repository
+2.  Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
