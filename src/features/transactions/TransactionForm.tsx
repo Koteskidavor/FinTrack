@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../hooks/store';
 import { addTransaction, updateTransaction } from './transactionSlice';
 import { INCOME_CATEGORIES, EXPENSE_CATEGORIES } from '../../types';
 import type { TransactionType, Transaction } from '../../types';
+import { DateInput } from '../../components/ui/DateInput';
 
 interface TransactionFormProps {
     onClose?: () => void;
@@ -71,7 +72,7 @@ export function TransactionForm({ onClose, editingTransaction }: TransactionForm
             setLoading(false);
         }
     };
-
+    console.log(date);
     return (
         <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg border border-slate-200 shadow-sm dark:bg-[#141B2B] dark:border-[#1E293B]/60">
             <h2 className="text-xl font-semibold mb-4 text-slate-900 dark:text-slate-100">
@@ -117,10 +118,9 @@ export function TransactionForm({ onClose, editingTransaction }: TransactionForm
                 </div>
                 <div>
                     <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">Date</label>
-                    <Input
-                        type="date"
+                    <DateInput
                         value={date}
-                        onChange={(e) => setDate(e.target.value)}
+                        onChange={setDate}
                         required
                     />
                 </div>
