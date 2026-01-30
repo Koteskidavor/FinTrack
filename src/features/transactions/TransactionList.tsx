@@ -34,7 +34,7 @@ const TransactionItem = React.memo(({
                     variant="ghost"
                     size="sm"
                     onClick={() => onEdit(tx)}
-                    className="text-slate-400 hover:text-primary-600 dark:text-slate-500 dark:hover:text-primary-400 h-8 w-8 p-0"
+                    className="text-slate-400 hover:text-primary-600 dark:text-slate-500 dark:hover:text-primary-400 h-8 w-8 p-0 hover:bg-primary-50 dark:hover:bg-[#1A2332] active:scale-95"
                     aria-label="Edit transaction"
                     title="Edit transaction"
                 >
@@ -44,7 +44,7 @@ const TransactionItem = React.memo(({
                     variant="ghost"
                     size="sm"
                     onClick={() => onDelete(tx.id)}
-                    className="text-slate-400 hover:text-red-600 dark:text-slate-500 dark:hover:text-red-400 h-8 w-8 p-0"
+                    className="text-slate-400 hover:text-red-600 dark:text-slate-500 dark:hover:text-red-400 h-8 w-8 p-0 hover:bg-primary-50 dark:hover:bg-[#1A2332] active:scale-95"
                     aria-label="Delete transaction"
                     title="Delete transaction"
                 >
@@ -75,7 +75,7 @@ export function TransactionList({ onEdit }: { onEdit: (tx: Transaction) => void 
         }
     }, [dispatch]);
 
-    
+
     const groupedItems = React.useMemo(() => {
         const groups: Record<string, { tx: Transaction; ids: string[] }> = {};
 
@@ -100,19 +100,18 @@ export function TransactionList({ onEdit }: { onEdit: (tx: Transaction) => void 
     }, [items]);
 
     if (status === 'loading') {
-        return <div className="p-8 text-center text-slate-500">Loading transactions...</div>;
+        return <div className="p-8 text-center text-slate-500 dark:text-slate-400">Loading transactions...</div>;
     }
 
     if (status === 'failed') {
-        return <div className="p-8 text-center text-red-500">Error: {error}</div>;
+        return <div className="p-8 text-center text-red-500 dark:text-red-400">Error: {error}</div>;
     }
 
     if (groupedItems.length === 0) {
-        return <div className="p-12 text-center text-slate-500 bg-slate-50 rounded-lg border border-dashed border-slate-300">
+        return <div className="p-12 text-center text-slate-500 bg-slate-50 rounded-lg border border-dashed border-slate-300 dark:bg-slate-800/50 dark:border-slate-700 dark:text-slate-400">
             No transactions yet. Add one to see it here.
         </div>;
     }
-
     return (
         <div className="bg-white rounded-lg border border-slate-200 shadow-sm overflow-hidden dark:bg-[#141B2B] dark:border-[#1E293B]/60">
             {groupedItems.map((tx) => (
