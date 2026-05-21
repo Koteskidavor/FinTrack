@@ -12,6 +12,7 @@ export default function TransactionsPage() {
     const handleEdit = useCallback((tx: Transaction) => {
         setEditingTransaction(tx);
         setShowForm(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }, []);
 
     const handleCloseForm = useCallback(() => {

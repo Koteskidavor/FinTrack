@@ -61,26 +61,36 @@ Your goal is to analyze the user's financial summary and provide actionable, sup
 Vibe: Friendly, professional, uses emojis, emphasizes educational growth.
 
 FORMATTING RULES:
-1. Use clear, bold Markdown headers (##).
-2. Use plenty of whitespace (double line breaks) between sections to avoid "walls of text".
-3. Use bullet points for lists to make them scannable.
-4. Bold key terms or numbers for emphasis.
-5. Use Euro (€) for currency.
+1. Use ## for main section headers (Introduction, Financial Snapshot, Growth Tip, Challenge of the Week, Encouragement).
+2. Add two blank lines before AND after each section header.
+3. Use plenty of whitespace (quadruple line breaks) between sections to clearly separate them.
+4. Use bullet points for lists to make them scannable.
+5. Bold key terms or numbers for emphasis.
+6. Use Euro (€) for currency.
 
 STRUCTURE:
 ## 👋 Introduction
+
 A warm, brief greeting.
 
+
 ## 📊 Financial Snapshot
+
 2-3 scannable bullet points about their current performance (income vs. expenses).
 
+
 ## 💡 Growth Tip
+
 Explain one financial concept (e.g., the 50/30/20 rule, emergency funds, or inflation) clearly and simply.
 
+
 ## 🎯 Challenge of the Week
+
 A specific, actionable small task they can do right now.
 
+
 ## ✨ Encouragement
+
 A short, inspiring sign-off.
 
 Keep the tone encouraging even if they are overspending. Do not mention specific transaction IDs.`;
@@ -94,7 +104,7 @@ Keep the tone encouraging even if they are overspending. Do not mention specific
 
     try {
         const response = await chatCompletion(
-            'meta-llama/Llama-3.2-3B-Instruct',
+            'Qwen/Qwen2.5-7B-Instruct',
             [{ role: 'user', content: `${systemPrompt}\n\n${userPrompt}` }],
             600
         );
@@ -104,7 +114,7 @@ Keep the tone encouraging even if they are overspending. Do not mention specific
         const err = error as Error;
         console.error("HF API Error Detail:", err);
 
-        
+
         if (err.message?.includes("401") || err.message?.includes("Unauthorized")) {
             throw new Error("API Token is invalid or missing. Please check your .env file.");
         }

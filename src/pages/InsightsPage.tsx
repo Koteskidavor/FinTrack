@@ -115,7 +115,7 @@ export default function InsightsPage() {
                             </CardHeader>
                             <CardContent className="pt-6">
                                 <FadeIn>
-                                    <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:text-slate-900 dark:prose-headings:text-[#F1F5F9] prose-p:text-slate-700 dark:prose-p:text-slate-300 prose-strong:text-primary-700 dark:prose-strong:text-[#22D3EE] prose-li:text-slate-700 dark:prose-li:text-slate-300">
+                                    <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:text-slate-900 dark:prose-headings:text-[#F1F5F9] prose-p:text-slate-700 dark:prose-p:text-slate-300 prose-strong:text-primary-700 dark:prose-strong:text-[#22D3EE] prose-li:text-slate-700 dark:prose-li:text-slate-300 prose-h2:text-xl prose-h2:font-bold prose-h2:mt-12 prose-h2:mb-6 prose-h2:pb-2 prose-h2:border-b prose-h2:border-slate-200 dark:prose-h2:border-slate-700 prose-h2:text-primary-700 dark:prose-h2:text-[#22D3EE]">
                                         <Suspense fallback={<div className="h-20 animate-pulse bg-slate-100 dark:bg-slate-800 rounded" />}>
                                             <ReactMarkdown>{insight}</ReactMarkdown>
                                         </Suspense>
