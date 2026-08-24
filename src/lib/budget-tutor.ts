@@ -104,7 +104,7 @@ Keep the tone encouraging even if they are overspending. Do not mention specific
 
     try {
         const response = await chatCompletion(
-            'Qwen/Qwen2.5-7B-Instruct',
+            'meta-llama/Llama-3.1-8B-Instruct:cheapest',
             [{ role: 'user', content: `${systemPrompt}\n\n${userPrompt}` }],
             600
         );
